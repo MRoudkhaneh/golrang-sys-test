@@ -1,0 +1,22 @@
+.box {
+  background: $white;
+  border-radius: .5rem;
+  padding: 2rem;
+
+  &-header {
+    margin-bottom: 1rem;
+  }
+
+  &-body {
+    &__show-value {
+      display: flex;
+      padding: 1rem 0;
+      justify-content: space-between;
+    }
+  }
+
+  &-footer {
+    padding: 1rem;
+    text-align: center;
+  }
+}
