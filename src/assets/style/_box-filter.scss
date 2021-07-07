@@ -1,19 +1,16 @@
 .box {
-  margin-top: 2rem;
+  margin-top: 3rem;
   background: $white;
   border-radius: .75rem;
   padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 
   &-header {
     margin-bottom: 1rem;
   }
 
   &-body {
-    &__show-value {
-      display: flex;
-      padding: 1rem 0;
-      justify-content: space-between;
-    }
+    margin: 1rem 0 ;
   }
 
   &-footer {

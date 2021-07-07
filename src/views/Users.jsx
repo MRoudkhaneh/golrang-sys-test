@@ -6,22 +6,26 @@ const Users = () => {
 
     return (
         <Container fluid="md" className="box">
-            <h3>
-                Golrang System Test.
-            </h3>
-            <p>Hi, my task is done. i use:</p>
-            <div className="d-flex">
-                <ol>
-                    <li>Redux toolkit</li>
-                    <li>react data table component</li>
-                    <li>Reactstrap with bootstrap</li>
-                </ol>
-                <ol start="4">
-                    <li>scss</li>
-                    <li>. . .</li>
-                </ol>
+            <div className="box-header">
+                <h1 className="text-center display-6 fw-bolder">
+                    Golrang System
+                </h1>
+                <h5>Hi, task is done. I used:</h5>
+                <div className="d-flex">
+                    <ol className="me-5">
+                        <li>Redux toolkit</li>
+                        <li>react data table component</li>
+                        <li>Reactstrap with bootstrap</li>
+                    </ol>
+                    <ol start="4">
+                        <li>scss</li>
+                        <li>. . .</li>
+                    </ol>
+                </div>
             </div>
-            <UserList/>
+            <div className="box-body">
+                <UserList/>
+            </div>
         </Container>
     )
 };

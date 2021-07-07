@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Col, FormGroup, Input, Label, Row, Spinner} from "reactstrap";
+import {Col, CustomInput, FormGroup, Input, Label, Row, Spinner} from "reactstrap";
 import DataTable from "react-data-table-component";
 import {useSelector} from "react-redux";
 import ReactPaginate from "react-paginate";
@@ -15,6 +15,7 @@ const UserList = () => {
     const [searchValue, setSearchValue] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
+    const [filterByUsername, setFilterByUsername] = useState();
 
     useEffect(() => {
         setData(users);
@@ -57,7 +58,6 @@ const UserList = () => {
         },
     ];
 
-    //? Handle changePagination
     const handlePagination = page => {
         setCurrentPage(page.selected + 1)
     };
@@ -85,8 +85,10 @@ const UserList = () => {
             containerClassName='pagination react-paginate separated-pagination pagination-sm justify-content-end pr-1 mt-1'
         />
     );
+
     //? search
-    const handelSearchValue = (e) => {
+    const handleSearchValue = (e) => {
+        setFilterByUsername('all')
         if (e !== '') {
             setCurrentPage(1);
             const temp = [...users];
@@ -100,7 +102,10 @@ const UserList = () => {
             setFilteredData([])
         }
     };
+
+    //? filter user
     const filterUserName = (e) => {
+        setSearchValue('')
         if (e !== 'all') {
             const temp = [...users];
             let filterUsers = temp.filter(item => item.username === e);
@@ -115,25 +120,26 @@ const UserList = () => {
             <Col sm={12}
                  md={6}>
                 <FormGroup>
-                    <Label>Search:</Label>
+                    <Label className="small">Search:</Label>
                     <Input type="text"
                            placeholder="search some thing!"
                            value={searchValue}
                            maxLength={16}
                            onChange={e => {
                                setSearchValue(e.target.value);
-                               handelSearchValue(e.target.value)
+                               handleSearchValue(e.target.value)
                            }}/>
                 </FormGroup>
             </Col>
             <Col sm={12}
                  md={6}>
                 <FormGroup>
-                    <Label>find user:</Label>
+                    <Label className="small">find user:</Label>
                     <Input
                         className='dataTable-select'
                         type='select'
                         id='reservationsPay-select'
+                        value={filterByUsername}
                         onChange={e => filterUserName(e.target.value)}>
                         <option value={'all'}>
                             all
@@ -141,14 +147,14 @@ const UserList = () => {
                         {data && data.map(item => (
                             <option value={`${item.username}`}
                                     key={item.id}>
-                                {item.username}
+                                {`@${item.username}`}
                             </option>
                         ))}
                     </Input>
                 </FormGroup>
             </Col>
             <Col md="12"
-                 className="mt-5">
+                 className="mt-3">
                 <DataTable
                     highlightOnHover={true}
                     persistTableHead
@@ -161,7 +167,7 @@ const UserList = () => {
                     data={(searchValue.length || filteredData.length) ? filteredData : data}
                     noDataComponent='Sorry, no data found'
                     progressPending={loading}
-                    progressComponent={<Spinner type="grow" color="primary"/>}
+                    progressComponent={'please waite . . .'}
                 />
             </Col>
         </Row>

@@ -9,7 +9,7 @@ const GolrangSys = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchingUser())
-    }, []);
+    }, [dispatch]);
     return (
 
         <Layout>
