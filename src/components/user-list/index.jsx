@@ -20,6 +20,7 @@ const UserList = () => {
         setData(users);
         setTotalPage(users && users.length / perPageCount);
     }, [users, perPageCount, data, totalPage]);
+
     //? Table config
     const columns = [
         {
